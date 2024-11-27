@@ -12,10 +12,21 @@ namespace CTDLGT_De8_BinarySearchTree
 {
     public partial class DangKy : Form
     {
+        Label missingValue = new Label();
         public DangKy()
         {
             InitializeComponent();
             EnableDoubleBuffering();
+            missingValue.AutoSize = true;
+            missingValue.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            missingValue.BackColor = Color.Transparent;
+            missingValue.ForeColor = Color.OrangeRed;
+            missingValue.Location = new Point(400, 603);
+            missingValue.Name = "missingValue";
+            missingValue.Size = new Size(305, 25);
+            missingValue.TabIndex = 2;
+            this.Controls.Add(missingValue);
+            missingValue.Hide();
         }
 
         private void Register(string username, string password)
@@ -32,16 +43,8 @@ namespace CTDLGT_De8_BinarySearchTree
 
         private void signinButton_Click(object sender, EventArgs e)
         {
-            Label missingValue = new Label();
-            missingValue.AutoSize = true;
-            missingValue.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            missingValue.BackColor = Color.Transparent;
-            missingValue.ForeColor = Color.OrangeRed;
-            missingValue.Location = new Point(400, 603);
-            missingValue.Name = "missingValue";
-            missingValue.Size = new Size(305, 25);
-            missingValue.TabIndex = 2;
-            this.Controls.Add(missingValue);
+
+            
             if (Account.Text.Trim().Equals("") || Password.Text.Trim().Equals(""))
             {
                 missingValue.Text = "Vui lòng nhập đủ tên và mật khẩu";
@@ -61,6 +64,7 @@ namespace CTDLGT_De8_BinarySearchTree
                 }
                 else
                 {
+                    missingValue.Hide();
                     missingValue.Text = "Mã xác thực không chính xác!";
                     missingValue.BringToFront();
                     missingValue.Show();
@@ -74,7 +78,7 @@ namespace CTDLGT_De8_BinarySearchTree
         // Danh sách lưu trữ tài khoản
         public static List<(string Username, string Password)> Accounts = new List<(string, string)>
         {
-            ("Username123", "123456") // Tài khoản mặc định
+            ("User123", "123456") // Tài khoản mặc định
         };
     }
 }
